@@ -1,0 +1,33 @@
+!!!html5
+%html
+  %head
+    %title image upload
+    %link{:rel => "stylesheet", :href => "css/bootstrap.min.css"}
+    %link{:rel => "stylesheet", :href => "css/bootstrap-theme.min.css"}
+  %body
+    .container-fluid
+      %div{:style => 'padding-top:40px'}
+        %p 現在起動中のコンテナ一覧です。
+        %table{:border => 2, :cellspacing => 3, :cellpadding =>20}
+          %tr
+            %th Container Name
+            %th Container ID
+            %th IP Address
+          - @containers.each do |container|
+            %tr
+            - container.each_value do |value|
+              %td= value
+
+        %p
+        %p
+        %p 現在アクセスしているコンテナは #{@hostname} です。
+        %p
+
+      #footer
+        %hr
+        %a{:href => "/uploader"} Go to Uploader page
+        %br
+        %a{:href => "/images"} Go to Images page
+
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"}
+    %script{:src => "js/bootstrap.min.js"}

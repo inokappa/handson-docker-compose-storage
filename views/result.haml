@@ -1,0 +1,23 @@
+!!!html5
+%html
+  %head
+    %title image upload
+    %link{:rel => "stylesheet", :href => "css/bootstrap.min.css"}
+    %link{:rel => "stylesheet", :href => "css/bootstrap-theme.min.css"}
+  %body
+    .container-fluid
+      %div{:style => 'padding-top:40px'}
+        #{@hostname} 経由のアップロードに #{@result} しました。
+        %br
+        ファイル名は
+        %a{:href => './images/' + @image} #{@image}
+        です。
+
+      #footer
+        %hr
+        %a{:href => "/images"} Go to Images page
+        %br
+        %a{:href => "/"} Go to Top page
+
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"}
+    %script{:src => "js/bootstrap.min.js"}

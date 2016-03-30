@@ -1,0 +1,22 @@
+!!!html5
+%html
+  %head
+    %title image upload
+    %link{:rel => "stylesheet", :href => "css/bootstrap.min.css"}
+    %link{:rel => "stylesheet", :href => "css/bootstrap-theme.min.css"}
+  %body
+    .container-fluid
+      %div{:style => 'padding-top:40px'}
+        %p ファイルをアップロード可能です。
+        %form{:action => "./upload", :method => "post", :enctype => "multipart/form-data"}
+          %input{:type => "file", :name => "file"}
+          %input{:type => "submit", :name => "submit"}
+
+      #footer
+        %hr
+        %a{:href => "/"} Go to Top page
+        %br
+        %a{:href => "/images"} Go to Images page
+
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"}
+    %script{:src => "js/bootstrap.min.js"}

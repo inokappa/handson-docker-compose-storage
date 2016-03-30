@@ -1,0 +1,21 @@
+!!!html5
+%html
+  %head
+    %title image upload
+    %link{:rel => "stylesheet", :href => "css/bootstrap.min.css"}
+    %link{:rel => "stylesheet", :href => "css/bootstrap-theme.min.css"}
+  %body
+    .container-fluid
+      %div{:style => 'padding-top:10px'}
+        - @images_path.each do |image_path|
+          %br
+          %a{:href => image_path} #{image_path}
+
+      #footer
+        %hr
+        %a{:href => "/"} Go to Top page
+        %br
+        %a{:href => "/uploader"} Go to Uploader page
+
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"}
+    %script{:src => "js/bootstrap.min.js"}
