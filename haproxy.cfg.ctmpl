@@ -9,5 +9,5 @@ defaults
   timeout server 60000ms
 
 listen http-in
-  bind *:80{{range service "hands-on-app"}}
+  bind *:80{{range service "storagedemo_app"}}
   server {{.ID}} {{.Address}}:{{.Port}} check{{end}}

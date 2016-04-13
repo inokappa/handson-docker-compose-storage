@@ -67,10 +67,11 @@ class App < Sinatra::Base
     Docker.url="unix:///tmp/docker.sock"
     containers = Docker::Container.all(:running => true)
     containers.each do |container|
+      network_mode = container.info['HostConfig']['NetworkMode']
       container_info = {}
       container_info.store("name", container.info['Names'][0].slice(1..-1))
       container_info.store("id", container.id[0,12])
-      container_info.store("ip", container.info['NetworkSettings']['Networks']['bridge']['IPAddress'])
+      container_info.store("ip", container.info['NetworkSettings']['Networks'][network_mode]['IPAddress'])
       containers_array << container_info
     end
     return containers_array

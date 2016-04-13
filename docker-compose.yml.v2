@@ -1,0 +1,44 @@
+version: "2"
+services:
+  consul_server:
+    image: gliderlabs/consul-server
+    command: -bootstrap
+    hostname: consul-server
+
+  registrator:
+    build:
+      context: ./registrator
+      dockerfile: ./Dockerfile
+    command: --internal consul://consul_server:8500
+    hostname: registrator
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    depends_on:
+      - consul_server
+
+  haproxy:
+    build:
+      context: .
+      dockerfile: Dockerfile.haproxy
+    hostname: haproxy
+    ports:
+      - "80:80"
+    depends_on:
+      - consul_server
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - storage:/mnt/data
+    ports:
+      - 4567
+
+volumes:
+  storage:
+    driver: local
+
+networks: 
+  bridge:
